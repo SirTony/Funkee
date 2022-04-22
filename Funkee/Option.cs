@@ -1,6 +1,6 @@
-﻿using static Funky.Option;
+﻿using static Funkee.Option;
 
-namespace Funky;
+namespace Funkee;
 
 /// <summary>
 ///     Utilities for constructing <see cref="Option{T}" /> values.
@@ -179,7 +179,7 @@ public readonly struct Option<T>
 
     public static explicit operator T( in Option<T> self ) => self.Unwrap();
 
-    public static implicit operator Option<T>( NoneType _ ) => new();
+    public static implicit operator Option<T>( Option.NoneType _ ) => new();
 
     public static implicit operator Option<T>( T? value )
         => Object.ReferenceEquals( value, null ) ? Option.None : Option.Some( value );

@@ -1,4 +1,4 @@
-﻿namespace Funky;
+﻿namespace Funkee;
 
 public static class Either
 {

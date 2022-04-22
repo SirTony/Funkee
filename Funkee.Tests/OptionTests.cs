@@ -1,7 +1,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Funky.Tests;
+namespace Funkee.Tests;
 
 public enum TestErrors
 {
