@@ -44,9 +44,9 @@ public static class Either
 
 public abstract record class Either<TLeft, TRight>
 {
-    public sealed record class Left( TLeft Value ) : Either<TLeft, TRight>( true );
+    private sealed record class Left( TLeft Value ) : Either<TLeft, TRight>( true );
 
-    public sealed record class Right( TRight Value ) : Either<TLeft, TRight>( false );
+    private sealed record class Right( TRight Value ) : Either<TLeft, TRight>( false );
 
     public bool IsLeft  { get; }
     public bool IsRight => !this.IsLeft;

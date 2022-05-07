@@ -19,7 +19,6 @@ public class OptionTests
 
         Assert.IsTrue( Option.Some( someString ).IsSome );
         Assert.ThrowsException<ArgumentNullException>( () => Option.Some( nullString ) );
-        Assert.IsTrue( Option.SomeUnsafe( nullString ).IsSome );
         Assert.IsTrue( Option.NoneOf<string>().IsNone );
         Assert.IsTrue( Option.From( new int?( 0 ) ).IsSome );
         Assert.IsTrue( Option.From( (int?)null ).IsNone );
