@@ -16,8 +16,8 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<RepositoryUrl>https://github.com/SirTony/Funkee</RepositoryUrl>
 		<Platforms>AnyCPU</Platforms>
-		<AssemblyVersion>0.9.1.0</AssemblyVersion>
-		<FileVersion>0.9.1.0</FileVersion>
+		<AssemblyVersion>0.10.0.0</AssemblyVersion>
+		<FileVersion>0.10.0.0</FileVersion>
 		<Version>$(AssemblyVersion)-pre</Version>
 		<DebugType>full</DebugType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -26,7 +26,16 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageId>$(AssemblyName)</PackageId>
+		<PackageProjectUrl>https://github.com/SirTony/Funkee</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
