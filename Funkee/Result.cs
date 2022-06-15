@@ -127,15 +127,15 @@ public abstract record Result<TValue, TError>
     /// <typeparam name="TValue2">The type of the intermediate mapped value.</typeparam>
     /// <typeparam name="TValue3">The type of the final mapped value.</typeparam>
     /// <param name="selector">The intermediate mapping function.</param>
-    /// <param name="projector">The final mapping funtion.</param>
+    /// <param name="projector">The final mapping function.</param>
     /// <returns>A new <see cref="Result{TValue,TError}" /> containing either the mapped value or the wrapped error.</returns>
     /// <exception cref="ArgumentNullException">
     ///     Thrown when <paramref name="selector" /> or <paramref name="projector" /> are
     ///     <see langword="null" />.
     /// </exception>
     public Result<TValue3, TError> SelectMany<TValue2, TValue3>(
-        Func<TValue, TValue2>          selector,
-        Func<TValue, TValue2, TValue3> projector
+        Func<TValue, Result<TValue2, TError>> selector,
+        Func<TValue, TValue2, TValue3>        projector
     )
     {
         if( selector is null ) throw new ArgumentNullException( nameof( selector ) );
@@ -143,7 +143,12 @@ public abstract record Result<TValue, TError>
 
         return this switch
         {
-            Ok(var x)  => projector( x, selector( x ) ),
+            Ok(var x) => selector( x ) switch
+            {
+                Result<TValue2, TError>.Ok(var y)  => new Result<TValue3, TError>.Ok( projector( x, y ) ),
+                Result<TValue2, TError>.Err(var e) => e,
+                _                                  => throw new NotImplementedException(),
+            },
             Err(var e) => e,
             _          => throw new NotImplementedException(),
         };
